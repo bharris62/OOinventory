@@ -22,7 +22,10 @@ public class Main {
                     "[6] Sign Out");
             String userInput = scanner.nextLine();
             if (userInput.equals("1")) {
-                inventory.addItem(scanner);
+                InventoryItem item = inventory.addItem(scanner);
+                System.out.println("What category is the item: 1.) Toy 2.) Vehicle 3.) Junk 4.) Tool 5.) Paint");
+                int type = Integer.parseInt(scanner.nextLine());
+                createItem(item, type);
 
             } else if (userInput.equals("2")) {
                 inventory.remove(scanner);
@@ -43,6 +46,31 @@ public class Main {
             }else{
                 System.out.println("Not a valid choice.");
             }
+        }
+    }
+
+    public static void createItem(InventoryItem item, int type ){
+        switch(type){
+            case 1:
+                Toy toy = new Toy(item.item, item.quantity);
+                inventoryItems.add(toy);
+                break;
+            case 2:
+                Vehicle vehicle = new Vehicle(item.item, item.quantity);
+                inventoryItems.add(vehicle);
+                break;
+            case 3:
+                Junk junk = new Junk(item.item, item.quantity);
+                inventoryItems.add(junk);
+                break;
+            case 4:
+                Tool tool = new Tool(item.item, item.quantity);
+                inventoryItems.add(tool);
+                break;
+            case 5:
+                Paint paint = new Paint(item.item, item.quantity);
+                inventoryItems.add(paint);
+                break;
         }
     }
 }

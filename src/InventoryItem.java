@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class InventoryItem {
     String item;
     int quantity;
+    String category;
 
     public InventoryItem(String item, int quantity){
         this.item = item;
@@ -66,7 +67,7 @@ public class InventoryItem {
             System.out.println("Nothing in Inventory");
         }else {
             for (InventoryItem item : Main.inventoryItems) {
-                System.out.printf("[%d] [%d] %s \n", i, item.quantity, item.item);
+                System.out.printf("[%d] [%d] %s ---%s\n", i, item.quantity, item.item, item.category);
                 i++;
             }
         }
@@ -86,11 +87,11 @@ public class InventoryItem {
         }
     }
 
-    public void addItem(Scanner scanner){
+    public InventoryItem addItem(Scanner scanner){
         String item = getItem(scanner);
         int quantity = getQuantity(scanner);
         InventoryItem thing = new InventoryItem(item, quantity);
-        Main.inventoryItems.add(thing);
+        return thing;
     }
 
     public void warningAndDelete(Scanner scanner){
