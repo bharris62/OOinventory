@@ -44,25 +44,27 @@ public class InventoryItem {
         int idx = Integer.parseInt(scanner.nextLine());
         if(idx < Main.inventoryItems.size() + 1) {
             System.out.println("Your current inventory is: " + Main.inventoryItems.get(idx - 1).quantity);
+            System.out.println("What would you like to change to: ");
+            while(true) {
+                int toUpdate = Integer.parseInt(scanner.nextLine());
+                if(toUpdate > 0 ) {
+                    InventoryItem item = Main.inventoryItems.get(idx - 1);
+                    item.quantity = toUpdate;
+                    break;
+                }else {
+                    System.out.println("Must be greater than 0.");
+                }
+            }
         }else{
             System.out.println("Not enough items.");
         }
-        System.out.println("What would you like to change to: ");
-        while(true) {
-            int toUpdate = Integer.parseInt(scanner.nextLine());
-            if(toUpdate > 0 ) {
-                InventoryItem item = Main.inventoryItems.get(idx - 1);
-                item.quantity = toUpdate;
-                break;
-            }else {
-                System.out.println("Must be greater than 0.");
-            }
-        }
+
     }
+
 
     public void print() {
         int i = 1;
-        System.out.println(" #    Q   Description");
+        System.out.println(" #    Q    Description");
         if(Main.inventoryItems.isEmpty()) {
             System.out.println("Nothing in Inventory");
         }else {
@@ -73,6 +75,8 @@ public class InventoryItem {
         }
         System.out.println("----------------------");
     }
+
+
 
     public void remove(Scanner scanner) {
         System.out.println("Enter item number to remove it. ([-1] to cancel)");
