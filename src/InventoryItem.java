@@ -65,13 +65,29 @@ public class InventoryItem {
     public void print() {
 
         if(Main.inventoryItems.isEmpty()) {
-            System.out.println("Nothing in Inventory");
+            System.out.println("[Nothing in Inventory]");
         }else {
             int i = 1;
-            System.out.println(" #    Q   Descr     Category");
+            System.out.println(" #    Q    Descr    Category");
             for (InventoryItem item : Main.inventoryItems) {
-                System.out.printf("[%d] [%d] %s ---%s\n", i, item.quantity, item.name, item.category);
+                System.out.printf("[%d] [%d]  %s      %s\n", i, item.quantity, item.name, item.category);
                 i++;
+            }
+        }
+        System.out.println("----------------------");
+    }
+
+    public void printCategory(String cat){
+        if(Main.inventoryItems.isEmpty()) {
+            System.out.println("[Nothing in Inventory]");
+        }else {
+            int i = 1;
+            System.out.println(" #    Q    Descr    Category");
+            for (InventoryItem item : Main.inventoryItems) {
+                if(item.category.equals(cat)) {
+                    System.out.printf("[%d] [%d]  %s      %s\n", i, item.quantity, item.name, item.category);
+                    i++;
+                }
             }
         }
         System.out.println("----------------------");
@@ -93,10 +109,10 @@ public class InventoryItem {
     }
 
     public InventoryItem addItem(Scanner scanner){
-        String item = getItem(scanner);
+        String name = getItem(scanner);
         int quantity = getQuantity(scanner);
-        InventoryItem thing = new InventoryItem(item, quantity);
-        return thing;
+        InventoryItem item = new InventoryItem(name, quantity);
+        return item;
     }
 
     public void warningAndDelete(Scanner scanner){
@@ -104,6 +120,34 @@ public class InventoryItem {
         String userInput = scanner.nextLine();
         if(userInput.equals("y")) {
             System.exit(0);
+        }
+    }
+
+    public void printSpecificItem(Scanner scanner) {
+        System.out.println("What category would you like to see? [1] Toy [2] Vehicle [3] Junk [4] Tool [5] Paint");
+        int category = Integer.parseInt(scanner.nextLine());
+        while(true) {
+            switch(category){
+                case 1:
+                    printCategory("Toy");
+                    break;
+                case 2:
+                    printCategory("Vehicle");
+                    break;
+                case 3:
+                    printCategory("Junk");
+                    break;
+                case 4:
+                    printCategory("Tool");
+                    break;
+                case 5:
+                    printCategory("Paint");
+                    break;
+                default:
+                    System.out.println("enter a number 1-5");
+                    break;
+            }
+            break;
         }
     }
 }
