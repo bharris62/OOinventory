@@ -5,7 +5,7 @@ public class Vehicle extends InventoryItem {
 
     public Vehicle(String item, int quantity) {
         this.category = "Vehicle";
-        this.item = item;
+        this.name = item;
         this.quantity = quantity;
     }
 }

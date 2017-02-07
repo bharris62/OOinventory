@@ -5,7 +5,7 @@ public class Paint extends InventoryItem{
 
     public Paint(String item, int quantity) {
         this.category = "Paint";
-        this.item = item;
+        this.name = item;
         this.quantity = quantity;
     }
 }

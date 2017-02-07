@@ -6,7 +6,7 @@ public class Toy extends InventoryItem {
 
     public Toy(String item, int quantity) {
         this.category = "Toy";
-        this.item = item;
+        this.name = item;
         this.quantity = quantity;
 
     }

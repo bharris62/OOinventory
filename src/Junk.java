@@ -3,9 +3,9 @@
  */
 public class Junk extends InventoryItem {
 
-    public Junk(String item, int quantity) {
+    public Junk(String name, int quantity) {
         this.category = "Junk";
-        this.item = item;
+        this.name = name;
         this.quantity = quantity;
     }
 

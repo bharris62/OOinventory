@@ -5,7 +5,7 @@ public class Tool extends InventoryItem {
 
     public Tool(String item, int quantity) {
         this.category = "Tool";
-        this.item = item;
+        this.name = item;
         this.quantity = quantity;
     }
 }

@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
 public class InventoryItem {
-    String item;
+    String name;
     int quantity;
     String category;
 
     public InventoryItem(String item, int quantity){
-        this.item = item;
+        this.name = item;
         this.quantity = quantity;
     }
 
@@ -17,14 +17,14 @@ public class InventoryItem {
         while(true) {
             System.out.print("What would you like to add: ");
 
-            item = scanner.nextLine();
-            if(item.isEmpty()){
+            name = scanner.nextLine();
+            if(name.isEmpty()){
                 System.out.println("You must enter something.");
             }else{
                 break;
             }
         }
-        return item;
+        return name;
     }
 
     public int getQuantity(Scanner scanner) {
@@ -63,13 +63,14 @@ public class InventoryItem {
 
 
     public void print() {
-        int i = 1;
-        System.out.println(" #    Q    Description");
+
         if(Main.inventoryItems.isEmpty()) {
             System.out.println("Nothing in Inventory");
         }else {
+            int i = 1;
+            System.out.println(" #    Q   Descr     Category");
             for (InventoryItem item : Main.inventoryItems) {
-                System.out.printf("[%d] [%d] %s ---%s\n", i, item.quantity, item.item, item.category);
+                System.out.printf("[%d] [%d] %s ---%s\n", i, item.quantity, item.name, item.category);
                 i++;
             }
         }
@@ -79,7 +80,7 @@ public class InventoryItem {
 
 
     public void remove(Scanner scanner) {
-        System.out.println("Enter item number to remove it. ([-1] to cancel)");
+        System.out.println("Enter name number to remove it. ([-1] to cancel)");
         int numToRemove = Integer.parseInt(scanner.nextLine());
         if(numToRemove > 0) {
             System.out.println("Your current inventory is: " + Main.inventoryItems.get(numToRemove - 1).quantity);

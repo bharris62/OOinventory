@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static ArrayList<InventoryItem> inventoryItems = new ArrayList<>();
-    public static HashMap<String, String> passWords = new HashMap<>();
+    public static HashMap<String, String> userLogin = new HashMap<>();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -23,10 +23,10 @@ public class Main {
             String userInput = scanner.nextLine();
             if (userInput.equals("1")) {
                 InventoryItem item = inventory.addItem(scanner);
-                System.out.println("What category is the item: 1.) Toy 2.) Vehicle 3.) Junk 4.) Tool 5.) Paint");
+                System.out.println("What category is the name: [1] Toy [2] Vehicle [3] Junk [4] Tool [5] Paint");
                 int type = Integer.parseInt(scanner.nextLine());
                 InventoryItem addedItem = createItem(item, type);
-                System.out.printf("You added %d %s to category %s\n", addedItem.quantity, addedItem.item, addedItem.category);
+                System.out.printf("You added %d %s to category %s\n", addedItem.quantity, addedItem.name, addedItem.category);
 
             } else if (userInput.equals("2")) {
                 inventory.remove(scanner);
@@ -51,36 +51,36 @@ public class Main {
     }
 
     public static InventoryItem createItem(InventoryItem item, int type ){
-        InventoryItem returnAbleItem = null;
+        InventoryItem returnableItem = null;
 
         switch(type){
             case 1:
-                Toy toy = new Toy(item.item, item.quantity);
+                Toy toy = new Toy(item.name, item.quantity);
                 inventoryItems.add(toy);
-                returnAbleItem = toy;
+                returnableItem = toy;
                 break;
             case 2:
-                Vehicle vehicle = new Vehicle(item.item, item.quantity);
+                Vehicle vehicle = new Vehicle(item.name, item.quantity);
                 inventoryItems.add(vehicle);
-                returnAbleItem = vehicle;
+                returnableItem = vehicle;
                 break;
             case 3:
-                Junk junk = new Junk(item.item, item.quantity);
+                Junk junk = new Junk(item.name, item.quantity);
                 inventoryItems.add(junk);
-                returnAbleItem = junk;
+                returnableItem = junk;
                 break;
             case 4:
-                Tool tool = new Tool(item.item, item.quantity);
+                Tool tool = new Tool(item.name, item.quantity);
                 inventoryItems.add(tool);
-                returnAbleItem = tool;
+                returnableItem = tool;
                 break;
             case 5:
-                Paint paint = new Paint(item.item, item.quantity);
+                Paint paint = new Paint(item.name, item.quantity);
                 inventoryItems.add(paint);
-                returnAbleItem = paint;
+                returnableItem = paint;
                 break;
         }
 
-        return returnAbleItem;
+        return returnableItem;
     }
 }

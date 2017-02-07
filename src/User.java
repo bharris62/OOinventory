@@ -6,14 +6,14 @@ import java.util.Scanner;
 public class User {
 
     public User() {
-        Main.passWords.put("admin", "password");
-        Main.passWords.put("blake", "blake");
-        Main.passWords.put("john", "john");
+        Main.userLogin.put("admin", "password");
+        Main.userLogin.put("blake", "blake");
+        Main.userLogin.put("john", "john");
 
     }
 
     public boolean isValidUser(String username, String password) {
-        return Main.passWords.containsKey(username) && Main.passWords.containsValue(password);
+        return Main.userLogin.containsKey(username) && Main.userLogin.containsValue(password);
 
     }
 
