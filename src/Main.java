@@ -12,12 +12,14 @@ public class Main {
         user.checkUser(scanner);
         System.out.println("~Welcome to Inventory Emporium~");
 
-        while (true) {
+        boolean stayInProgram = true;
+
+        while (stayInProgram) {
             InventoryItem inventory = new InventoryItem();
             System.out.println("[1] Add Some Inventory\n" +
-                    "[2] Remove Some InventoryItem\n" +
+                    "[2] Remove Some Inventory\n" +
                     "[3] Update some inventory Quantity. \n" +
-                    "[4] View InventoryItem. \n" +
+                    "[4] View Inventory. \n" +
                     "[5] Print Specific Category\n" +
                     "[6] Shut Down System\n" +
                     "[7] Sign Out");
@@ -42,7 +44,7 @@ public class Main {
                 inventory.printSpecificItem(scanner);
 
             }else if (userInput.equals("6")) {
-                inventory.warningAndDelete(scanner);
+                stayInProgram = inventory.warnAndLeave(scanner);
 
             }else if(userInput.equals("6")){
                 System.out.println("Thanks for coming...");

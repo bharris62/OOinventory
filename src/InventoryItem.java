@@ -61,7 +61,7 @@ public class InventoryItem {
 
     }
 
-
+    //print methods used to print with the index.
     public void print() {
 
         if(Main.inventoryItems.isEmpty()) {
@@ -78,31 +78,30 @@ public class InventoryItem {
     }
 
     public void printCategory(String cat){
-        if(Main.inventoryItems.isEmpty()) {
-            System.out.println("[Nothing in Inventory]");
-        }else {
-            int i = 1;
-            System.out.println(" #    Q    Descr    Category");
-            for (InventoryItem item : Main.inventoryItems) {
-                if(item.category.equals(cat)) {
-                    System.out.printf("[%d] [%d]  %s      %s\n", i, item.quantity, item.name, item.category);
-                    i++;
-                }
+        int i = 1;
+        System.out.println(" #    Q    Descr    Category");
+        for (InventoryItem item : Main.inventoryItems) {
+
+            if(item.category.equals(cat)) {
+                System.out.printf("[%d] [%d]  %s      %s\n", i, item.quantity, item.name, item.category);
+                i++;
             }
+            if(i ==1){
+                System.out.printf("Nothing in %s.\n", cat);
+            }
+
         }
         System.out.println("----------------------");
     }
 
-
-
     public void remove(Scanner scanner) {
         System.out.println("Enter name number to remove it. ([-1] to cancel)");
         int numToRemove = Integer.parseInt(scanner.nextLine());
-        if(numToRemove > 0) {
+        if(numToRemove <= 0) {
             System.out.println("Your current inventory is: " + Main.inventoryItems.get(numToRemove - 1).quantity);
             System.out.println("Are you sure? [y/n]");
             String resp = scanner.nextLine().toLowerCase();
-            if (numToRemove > 0 && resp.equals("y")) {
+            if (resp.equals("y")) {
                 Main.inventoryItems.remove(numToRemove - 1);
             }
         }
@@ -115,12 +114,13 @@ public class InventoryItem {
         return item;
     }
 
-    public void warningAndDelete(Scanner scanner){
+    public boolean warnAndLeave(Scanner scanner){
         System.out.println("Are you sure, you will lose all data? [y/n]");
         String userInput = scanner.nextLine();
         if(userInput.equals("y")) {
-            System.exit(0);
+            return false;
         }
+        return true;
     }
 
     public void printSpecificItem(Scanner scanner) {
