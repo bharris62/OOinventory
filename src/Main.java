@@ -29,6 +29,7 @@ public class Main {
                 System.out.println("What category is the name: [1] Toy [2] Vehicle [3] Junk [4] Tool [5] Paint");
                 int type = Integer.parseInt(scanner.nextLine());
                 InventoryItem addedItem = createItem(item, type);
+                inventoryItems.add(addedItem);
                 System.out.printf("You added %d %ss to category %s\n", addedItem.quantity, addedItem.name, addedItem.category);
 
             } else if (userInput.equals("2")) {
@@ -60,27 +61,22 @@ public class Main {
                 switch (type) {
                     case 1:
                         Toy toy = new Toy(item.name, item.quantity);
-                        inventoryItems.add(toy);
                         returnableItem = toy;
                         break;
                     case 2:
                         Vehicle vehicle = new Vehicle(item.name, item.quantity);
-                        inventoryItems.add(vehicle);
                         returnableItem = vehicle;
                         break;
                     case 3:
                         Junk junk = new Junk(item.name, item.quantity);
-                        inventoryItems.add(junk);
                         returnableItem = junk;
                         break;
                     case 4:
                         Tool tool = new Tool(item.name, item.quantity);
-                        inventoryItems.add(tool);
                         returnableItem = tool;
                         break;
                     case 5:
                         Paint paint = new Paint(item.name, item.quantity);
-                        inventoryItems.add(paint);
                         returnableItem = paint;
                         break;
                     default:
